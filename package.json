@@ -5,7 +5,7 @@
   	"discord.js": "^12.2.0",
 	"ocore": "git+https://github.com/byteball/ocore.git",
 	"dotenv": "^8.2.0",
-	"aabot": "git+https://github.com/byteball/aabot.git",
+	"aabot": "git+https://github.com/byteball/aabot.git"
   },
   "description": "",
   "main": "governance_events.js",

@@ -6,20 +6,5 @@
 	"ocore": "git+https://github.com/byteball/ocore.git",
 	"dotenv": "^8.2.0",
 	"aabot": "git+https://github.com/byteball/aabot.git"
-  },
-  "description": "",
-  "main": "governance_events.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kakysha/governance_events.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kakysha/governance_events/issues"
-  },
-  "homepage": "https://github.com/kakysha/governance_events#readme"
+  }
 }

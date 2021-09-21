@@ -27,14 +27,14 @@ function setBotActivity(prefix){
 	discordClient.user.setActivity(prefix + "governance AAs" , {type: "WATCHING"}); 
 }
 
-function announceEvent(aa_name, asset, decimals, url, event){
+function announceEvent(aa_name, symbol, decimals, url, event){
 	const msg = new Discord.MessageEmbed().setColor('#0099ff');
 	let description = '[View on interface](' + url+')\n\n' + event.trigger_address;
 
 	function addLeaderValues() {
 		msg.addFields(
 			{ name: "Leader value", value: event.leader_value, inline: true },
-			{ name: "Support", value: applyDecimals(event.leader_support, decimals) + ' ' + (asset || defaultSymbol), inline: true},
+			{ name: "Support", value: applyDecimals(event.leader_support, decimals) + ' ' + (symbol || defaultSymbol), inline: true},
 			{ name: '\u200B', value: '\u200B' , inline: true 	}
 		)
 	}
@@ -42,11 +42,11 @@ function announceEvent(aa_name, asset, decimals, url, event){
 	switch(event.type) {
 		case "added_support":
 			msg.setTitle('Support added in ' + aa_name)
-			.setDescription(description + ' adds ' + applyDecimals(event.added_support, decimals) + ' ' + (asset || defaultSymbol) + ' in support to value `' + event.value +'` for parameter `'+event.name +'`'
+			.setDescription(description + ' adds ' + applyDecimals(event.added_support, decimals) + ' ' + (symbol || defaultSymbol) + ' in support to value `' + event.value +'` for parameter `'+event.name +'`'
 			)
 			.addFields(
 				{ name: "Value", value: event.value, inline: true },
-				{ name: "Support", value: applyDecimals(event.support, decimals) + ' ' + (asset || defaultSymbol), inline: true},
+				{ name: "Support", value: applyDecimals(event.support, decimals) + ' ' + (symbol || defaultSymbol), inline: true},
 				{ name: '\u200B', value: '\u200B' , inline: true 	}
 			)
 			addLeaderValues();
@@ -67,7 +67,7 @@ function announceEvent(aa_name, asset, decimals, url, event){
 			break;
 		case "withdraw":
 			msg.setTitle('Balance withdrawn from ' + aa_name)
-			.setDescription(description + ' has withdrawn `' + applyDecimals(event.amount, decimals) + ' ' + (asset || defaultSymbol) + '` from their balance')
+			.setDescription(description + ' has withdrawn `' + applyDecimals(event.amount, decimals) + ' ' + (symbol || defaultSymbol) + '` from their balance')
 			break;
 	}
 	msg.addFields({name: 'Trigger unit', value: '[' + event.trigger_unit + ']('+conf.explorer_base_url + event.trigger_unit+')'});

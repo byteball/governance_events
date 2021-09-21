@@ -57,7 +57,7 @@ function announceEvent(aa_name, asset, decimals, url, event){
 			addLeaderValues();
 			break;
 		case "commit":
-			msg.setTitle('New value commited in ' + aa_name)
+			msg.setTitle('New value committed in ' + aa_name)
 			.setDescription(description + ' has committed value `' + event.value+ '` for parameter `' + event.name + "`")
 			.addFields(
 				{ name: "Parameter", value: event.name, inline: true },

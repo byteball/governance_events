@@ -42,7 +42,7 @@ function announceEvent(aa_name, symbol, decimals, url, event){
 	switch(event.type) {
 		case "added_support":
 			msg.setTitle('Support added in ' + aa_name)
-			.setDescription(description + ' adds ' + applyDecimals(event.added_support, decimals) + ' ' + (symbol || defaultSymbol) + ' in support to value `' + event.value +'` for parameter `'+event.name +'`'
+			.setDescription(description + ' adds ' + applyDecimals(event.added_support, decimals) + ' ' + (symbol || defaultSymbol) + ' in support of value `' + event.value +'` of parameter `'+event.name +'`'
 			)
 			.addFields(
 				{ name: "Value", value: event.value, inline: true },

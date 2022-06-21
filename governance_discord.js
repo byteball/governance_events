@@ -24,10 +24,14 @@ const defaultSymbol = 'tokens';
 
 function setBotActivity(prefix){
 	prefix = prefix ? (prefix + " ") : "";
-	discordClient.user.setActivity(prefix + "governance AAs" , {type: "WATCHING"}); 
+	discordClient.user.setActivity(prefix + "governance AAs" , {type: "WATCHING"});
 }
 
-function announceEvent(aa_name, symbol, decimals, url, event){
+function announceEvent(aa_name, symbol, decimals, url, event, fullExplorerURL){
+	if (!fullExplorerURL) {
+		fullExplorerURL = conf.explorer_base_url + event.trigger_unit;
+	}
+
 	const msg = new Discord.MessageEmbed().setColor('#0099ff');
 	let description = '[View on interface](' + url+')\n\n' + event.trigger_address;
 
@@ -65,12 +69,16 @@ function announceEvent(aa_name, symbol, decimals, url, event){
 				{ name: '\u200B', value: '\u200B' , inline: true 	}
 			)
 			break;
+		case "deposit":
+			msg.setTitle('Balance added to ' + aa_name)
+				.setDescription(description + ' has added `' + applyDecimals(event.amount, decimals) + ' ' + (symbol || defaultSymbol) + '` to their governance balance')
+			break;
 		case "withdraw":
 			msg.setTitle('Balance withdrawn from ' + aa_name)
 			.setDescription(description + ' has withdrawn `' + applyDecimals(event.amount, decimals) + ' ' + (symbol || defaultSymbol) + '` from their balance')
 			break;
 	}
-	msg.addFields({name: 'Trigger unit', value: '[' + event.trigger_unit + ']('+conf.explorer_base_url + event.trigger_unit+')'});
+	msg.addFields({name: 'Trigger unit', value: '[' + event.trigger_unit + ']('+ fullExplorerURL +')'});
 	sendToDiscord(msg);
 }
 
